@@ -23,6 +23,7 @@ setup(
 	        'dsr_service_motion_basic        = dsr_example2_py.dsr_service_motion_basic:main',
 	        'dsr_service_motion_simple       = dsr_example2_py.dsr_service_motion_simple:main',
 	        'dsr_service_motion_simple_class = dsr_example2_py.dsr_service_motion_simple_class:main',
+            'dsr_topic_motion_simple = dsr_example2_py.dsr_topic_motion_simple:main',
         ],
     },
 )
