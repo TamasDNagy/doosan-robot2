@@ -17,6 +17,7 @@ from sensor_msgs.msg import JointState
 g_node = None
 rclpy.init()
 g_node = rclpy.create_node("dsr_topic_motion_simple_py")
+srv = g_node.create_client(MoveJoint, 'motion/move_joint')
 
 def set_robot_mode(robot_mode):
     global g_node
@@ -37,8 +38,7 @@ def set_robot_mode(robot_mode):
     return ret
 def movej(pos, vel=None, acc=None, time=0.0, radius=0.0, mod= 0, ra=0):
     global g_node
-
-    srv = g_node.create_client(MoveJoint, 'motion/move_joint')
+    global srv
 
     req = MoveJoint.Request()
 
@@ -88,7 +88,7 @@ def cb_joint_cmd(msg):
     g_node.get_logger().info('Joint command received...')
     p1 = [msg.position[0], msg.position[1], msg.position[2],
           msg.position[3], msg.position[4], msg.position[5]]
-    movej(p1, vel=100, acc=1000)
+    movej(p1, vel=180, acc=6000)
     #g_node.get_logger().info('Movement done.')
 
 
