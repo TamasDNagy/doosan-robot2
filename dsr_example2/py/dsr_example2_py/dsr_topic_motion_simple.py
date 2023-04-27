@@ -9,6 +9,7 @@ import rclpy
 import sys
 import time
 import signal
+import math
 
 from dsr_msgs2.msg import *
 from dsr_msgs2.srv import *
@@ -86,9 +87,13 @@ def signal_handler(sig, frame):
 def cb_joint_cmd(msg):
     global g_node
     g_node.get_logger().info('Joint command received...')
-    p1 = [msg.position[0], msg.position[1], msg.position[2],
-          msg.position[3], msg.position[4], msg.position[5]]
-    movej(p1, vel=180, acc=6000)
+    p1 = [math.degrees(msg.position[0]),
+          math.degrees(msg.position[1]),
+          math.degrees(msg.position[2]),
+          math.degrees(msg.position[3]),
+          math.degrees(msg.position[4]),
+          math.degrees(msg.position[5])]
+    movej(p1, vel=180, acc=1000)
     #g_node.get_logger().info('Movement done.')
 
 
